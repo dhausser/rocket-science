@@ -1,12 +1,10 @@
 import { IResolvers } from 'apollo-server';
 import { paginateResults } from './utils';
-import { books } from './data';
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 export const resolvers: IResolvers = {
   Query: {
-    books: () => books,
     launches: async (_, { pageSize = 20, after }, { dataSources }) => {
       const allLaunches = await dataSources.launchAPI.getAllLaunches();
       // we want these in reverse chronological order

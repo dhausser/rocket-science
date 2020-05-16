@@ -19,21 +19,7 @@ interface Launch {
 }
 
 class LaunchAPI extends RESTDataSource {
-  // constructor() {
-  //   super();
-  //   this.baseURL = 'https://movies-api.example.com/';
-  // }
-
-  // baseURL = 'https://api.spacexdata.com/v2/'
-  
-  get baseURL() {
-    console.log(this.context.env)
-    if (this.context.env === 'development') {
-      return 'https://api.spacexdata.com/v2/';
-    } else {
-      return 'https://api.spacexdata.com/v2/';
-    }
-  }
+  baseURL ='https://api.spacexdata.com/v2/'
 
   willSendRequest(request: RequestOptions) {
     request.headers.set('Authorization', this.context.auth);

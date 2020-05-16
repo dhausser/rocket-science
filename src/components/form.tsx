@@ -1,18 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import useForm from "../lib/useForm";
+import Launches from "./launches"
 
-export default function Form() {
+function Form() {
   const { inputs, handleChange } = useForm();
-
-  // function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setValue(event.target.value);
-  //   console.log(value);
-  // }
 
   function handleSubmit() {
     console.log(inputs);
-    // resetForm();
   }
 
   return (
@@ -57,7 +52,10 @@ export default function Form() {
           </div>
         </div>
         <code>{JSON.stringify(inputs)}</code>
+        <Launches />
       </div>
     </div>
   );
 }
+
+export default Form;

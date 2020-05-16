@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css';
 
-import Login from './components/Login'
-import Form from './components/Form'
+import Login from './components/login';
+import Form from './components/form';
+import Launch from './components/launch';
 
 function App() {
   return (
     <Router>
       <Route exact path="/" component={Login} />
-      <Route exact path="/form" component={Form} />
+      <Route path="/form" component={Form} />
+      <Route path="/launch/:launchId" component={Launch} />
     </Router>
   );
 }
