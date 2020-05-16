@@ -15,6 +15,7 @@ function Form() {
       <div
         css={css`
           max-width: 400px;
+          margin-bottom:50px;
         `}
       >
         <form onSubmit={handleSubmit}>
@@ -51,7 +52,7 @@ function Form() {
             Send
           </div>
         </div>
-        <code>{JSON.stringify(inputs)}</code>
+        {/* <code>{JSON.stringify(inputs)}</code> */}
         <Launches />
       </div>
     </div>

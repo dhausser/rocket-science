@@ -41,10 +41,6 @@ const Launch: React.FC<LaunchProps> = () => {
   // if (error) return <p>ERROR: {error.message}</p>;
   // if (!data) return <p>Not found</p>;
 
-  // console.log(data);
-
-  console.log(launchId);
-
   return (
     <div className="container">
       <p>Launch Details for: {launchId}</p>
