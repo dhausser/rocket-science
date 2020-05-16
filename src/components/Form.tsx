@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import useForm from "../lib/useForm";
 
 export default function Form() {
-  const { inputs, handleChange, resetForm } = useForm();
+  const { inputs, handleChange } = useForm();
 
   // function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
   //   setValue(event.target.value);
@@ -12,7 +12,7 @@ export default function Form() {
 
   function handleSubmit() {
     console.log(inputs);
-    resetForm();
+    // resetForm();
   }
 
   return (
@@ -44,19 +44,18 @@ export default function Form() {
             value={inputs.password}
             onChange={handleChange}
           />
-          <div
-            css={css`
-              width: 100%;
-              display: flex;
-              justify-content: flex-end;
-            `}
-          >
-            <div className="button" onClick={handleSubmit}>
-              {/* <div onClick={handleSubmit}> */}
-              Send
-            </div>
-          </div>
         </form>
+        <div
+          css={css`
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 100px;
+          `}
+        >
+          <div className="button" onClick={handleSubmit}>
+            Send
+          </div>
+        </div>
         <code>{JSON.stringify(inputs)}</code>
       </div>
     </div>
