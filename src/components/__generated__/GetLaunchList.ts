@@ -22,7 +22,7 @@ export interface GetLaunchList_launches_launches_mission {
 export interface GetLaunchList_launches_launches {
   __typename: "Launch";
   id: string;
-  isBooked: boolean;
+  site: string | null;
   rocket: GetLaunchList_launches_launches_rocket | null;
   mission: GetLaunchList_launches_launches_mission | null;
 }

@@ -22,7 +22,7 @@ export interface LaunchTile_mission {
 export interface LaunchTile {
   __typename: "Launch";
   id: string;
-  isBooked: boolean;
+  site: string | null;
   rocket: LaunchTile_rocket | null;
   mission: LaunchTile_mission | null;
 }

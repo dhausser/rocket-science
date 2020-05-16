@@ -12,6 +12,8 @@
 }
 
 body {
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-color-primary);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -48,15 +50,38 @@ input:focus {
   /* background-color: var(--ifm-color-primary-dark); */
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  line-height: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+}
+
+a:hover {
+  color: white;
+}
+
+.sidenav {
+  padding: 0px 20px;
+  width: 40px;
+}
+
 .container {
-  background-color: var(--ifm-background-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
   text-align: center;
+}
+
+.wrapper {
+  max-width: 400px;
+  margin: 20px 0px;
 }
 
 .button {
@@ -81,5 +106,39 @@ input:focus {
 
 .button:hover {
   background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 300px;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: var(--ifm-border-radius);
+  color: var(--ifm-color-primary);
+  margin-bottom: 40px;
+}
+
+.box-link {
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: var(--ifm-border-radius);
+  color: var(--ifm-color-primary);
+  margin-bottom: 40px;
+  cursor: pointer;
+  transition: color var(--ifm-button-transition-duration)
+      cubic-bezier(0.08, 0.52, 0.52, 1),
+    background-color var(--ifm-button-transition-duration)
+      cubic-bezier(0.08, 0.52, 0.52, 1),
+    border-color var(--ifm-button-transition-duration)
+      cubic-bezier(0.08, 0.52, 0.52, 1);
+}
+
+.box-link:hover {
+  background-color: var(--ifm-color-primary);
+}
+
+.box-link:hover a {
   color: white;
 }

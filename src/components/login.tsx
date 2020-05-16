@@ -1,10 +1,10 @@
 import React from 'react'
-import Button from './button';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
-export default function Login() {
+ const Login: React.FC<RouteComponentProps> = () => {
   return (
-    <div className="container">
-      <Button text="Login" path="/form" />
-    </div>
-  )
+    <Link to="/form" className="button">Login</Link>
+  );
 }
+
+export default Login;
