@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from "react-router-dom";
 
 import LaunchTile from "./launch-tile";
 import * as GetLaunchListTypes from "./__generated__/GetLaunchList";
@@ -37,6 +37,7 @@ export const GET_LAUNCHES = gql`
 interface LaunchesProps extends RouteComponentProps {}
 
 const Launches: React.FC<LaunchesProps> = () => {
+  const [loadingMore, setLoadingMore] = useState(false);
   const { data, loading, error, fetchMore } = useQuery<
     GetLaunchListTypes.GetLaunchList,
     GetLaunchListTypes.GetLaunchListVariables
@@ -46,22 +47,26 @@ const Launches: React.FC<LaunchesProps> = () => {
   if (error || !data) return <p>ERROR</p>;
 
   return (
-    <div className="container">
-      <div className="wrapper">
+    <>
+      <div className="grid">
         {data.launches &&
           data.launches.launches &&
           data.launches.launches.map((launch: any) => (
             <LaunchTile key={launch.id} launch={launch} />
           ))}
-        {data.launches && data.launches.hasMore && (
-          <div
-            className="button"
-            onClick={() =>
+      </div>
+      {data.launches && data.launches.hasMore && (
+        <div
+          className="button"
+          style={{ width: "100px" }}
+          onClick={() => {
+              setLoadingMore(true);
               fetchMore({
                 variables: {
                   after: data.launches.cursor,
                 },
                 updateQuery: (prev, { fetchMoreResult, ...rest }) => {
+                  setLoadingMore(false);
                   if (!fetchMoreResult) return prev;
                   return {
                     ...fetchMoreResult,
@@ -76,12 +81,12 @@ const Launches: React.FC<LaunchesProps> = () => {
                 },
               })
             }
-          >
-            Load More
-          </div>
-        )}
-      </div>
-    </div>
+          }
+        >
+          {loadingMore ? 'Loading...' : 'Load More'}
+        </div>
+      )}
+    </>
   );
 };
 

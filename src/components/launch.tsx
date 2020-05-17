@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import { useParams, Link, RouteComponentProps } from "react-router-dom";
+import { useParams, RouteComponentProps } from "react-router-dom";
 
 import { LAUNCH_TILE_DATA } from "./launches";
 import * as LaunchDetailsTypes from "./__generated__/LaunchDetails";
@@ -45,9 +45,9 @@ const Launch: React.FC<LaunchProps> = () => {
           </h3>
           <h5>{site}</h5>
         </div>
-        <Link to="/launches" className="button">
+        <div className="button" onClick={() => window.history.back() }>
           Back
-        </Link>
+        </div>
       </>
     );
   }

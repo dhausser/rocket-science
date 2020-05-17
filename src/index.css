@@ -1,6 +1,8 @@
 :root {
-  --ifm-background-color: #282c34;
-  --ifm-color-primary: #09d3ac;
+  --ifm-background-color: #f5f8f9;
+  --ifm-background-color-dark: #282c34;
+  --ifm-color-primary: #00ad9f;
+  /* --ifm-color-primary: #09d3ac; */
   --ifm-color-primary-dark: rgb(8, 190, 155);
   --ifm-color-primary-darker: rgb(8, 179, 146);
   --ifm-color-primary-darkest: rgb(6, 148, 120);
@@ -8,7 +10,7 @@
   --ifm-color-primary-lighter: rgb(83, 224, 197);
   --ifm-color-primary-lightest: rgb(132, 233, 214);
   --ifm-button-transition-duration: 0.2s;
-  --ifm-border-radius: 0.3rem;
+  --ifm-border-radius: 4px;
 }
 
 body {
@@ -30,6 +32,7 @@ code {
 input {
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0 2px 1px hsla(0, 0%, 66.7%, 0.25);
   background-color: var(--ifm-background-color);
   border: 1px solid var(--ifm-color-primary);
   border-radius: var(--ifm-border-radius);
@@ -41,7 +44,15 @@ input {
 }
 
 input:hover {
-  border-color: var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+input:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: var(--ifm-color-primary-light);
+  outline: var(--ifm-color-primary-dark);
 }
 
 input:focus {
@@ -62,12 +73,16 @@ a {
 }
 
 a:hover {
-  color: white;
+  color: var(--ifm-color-primary-darkest);
 }
 
 .sidenav {
   padding: 0px 20px;
-  width: 40px;
+  margin: 10px 20px;
+  width: 10%;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.7;
 }
 
 .container {
@@ -84,11 +99,24 @@ a:hover {
   margin: 20px 0px;
 }
 
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  display: -webkit-box;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-left: -10px;
+}
+
 .button {
-  background-color: var(--ifm-background-color);
-  border: 1px solid var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary);
+  box-shadow: 0 2px 1px hsla(0, 0%, 66.7%, 0.25);
   border-radius: var(--ifm-border-radius);
-  color: var(--ifm-color-primary);
+  color: var(--ifm-background-color);
   font-size: 17px;
   cursor: pointer;
   padding: 8.1px 32.4px;
@@ -105,7 +133,7 @@ a:hover {
 }
 
 .button:hover {
-  background-color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary-light);
   color: white;
 }
 
@@ -114,18 +142,22 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  height: 300px;
   border: 1px solid var(--ifm-color-primary);
   border-radius: var(--ifm-border-radius);
   color: var(--ifm-color-primary);
+  height: 300px;
   margin-bottom: 40px;
 }
 
 .box-link {
-  border: 1px solid var(--ifm-color-primary);
+  display: block;
+  background-color: white;
+  box-shadow: 0 2px 1px hsla(0, 0%, 66.7%, 0.25);
+  /* border: 1px solid var(--ifm-color-primary); */
   border-radius: var(--ifm-border-radius);
   color: var(--ifm-color-primary);
-  margin-bottom: 40px;
+  width: 32%;
+  margin: 10px;
   cursor: pointer;
   transition: color var(--ifm-button-transition-duration)
       cubic-bezier(0.08, 0.52, 0.52, 1),
@@ -137,6 +169,12 @@ a:hover {
 
 .box-link:hover {
   background-color: var(--ifm-color-primary);
+  -webkit-box-shadow: 0 2px 1px hsla(0, 0%, 66.7%, 0.45);
+  box-shadow: 0 2px 1px hsla(0, 0%, 66.7%, 0.45);
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+  -webkit-transition: 0.08s ease-out;
+  transition: 0.08s ease-out;
 }
 
 .box-link:hover a {
