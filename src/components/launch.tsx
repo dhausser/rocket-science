@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useParams, RouteComponentProps } from "react-router-dom";
 
+import LaunchTile from "./launch-tile";
 import { LAUNCH_TILE_DATA } from "./launches";
 import * as LaunchDetailsTypes from "./__generated__/LaunchDetails";
 
@@ -31,24 +32,19 @@ const Launch: React.FC<LaunchProps> = () => {
     variables: { launchId },
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>ERROR: {error.message}</p>;
-  if (!data) return <p>Not found</p>;
+  if (loading) return <div className="wrapper">Loading...</div>;
+  if (error) return <div className="wrapper">ERROR: {error.message}</div>;
+  if (!data) return <div className="wrapper">Not found</div>;
 
   if (data.launch?.rocket && data.launch?.site) {
-    const { rocket, site } = data.launch;
+    const { launch } = data;
     return (
-      <>
-        <div className="wrapper box" style={{ width: "100%" }}>
-          <h3>
-            {rocket && rocket.name} ({rocket && rocket.type})
-          </h3>
-          <h5>{site}</h5>
-        </div>
+      <div className="wrapper">
+        <LaunchTile key={launch.id} launch={launch} />
         <div className="button" onClick={() => window.history.back() }>
           Back
         </div>
-      </>
+      </div>
     );
   }
   return null;

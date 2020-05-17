@@ -3,7 +3,9 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 
  const Login: React.FC<RouteComponentProps> = () => {
   return (
-    <Link to="/form" className="button">Login</Link>
+    <div className="wrapper">
+      <Link to="/form" className="button">Login</Link>
+    </div>
   );
 }
 

@@ -8,13 +8,22 @@ interface LaunchTileProps {
 }
 
 const LaunchTile: React.FC<LaunchTileProps> = ({ launch }) => {
-  const { id, mission, rocket } = launch;
+  const { id, mission, rocket, site } = launch;
   return (
-    <div className="box-link">
-      <Link to={`/launch/${id}`} style={{ textDecoration: 'none' }}>
-        <h3>{mission?.name}</h3>
-        <h5>{rocket?.name}</h5>
-      </Link>
+    <div className="box-card-container">
+      <div className="box-card">
+        <div className="box-card-link">
+          <Link to={`/launch/${id}`} style={{ textDecoration: 'none' }}>
+            {mission?.name}
+          </Link>
+        </div>
+        <div className="box-card-text">
+          {rocket?.name}
+        </div>
+        <div className="box-card-tag">
+          {site}
+        </div>
+      </div>
     </div>
   );
 }

@@ -43,11 +43,11 @@ const Launches: React.FC<LaunchesProps> = () => {
     GetLaunchListTypes.GetLaunchListVariables
   >(GET_LAUNCHES);
 
-  if (loading) return <p>Loading...</p>;
-  if (error || !data) return <p>ERROR</p>;
+  if (loading) return <div className="wrapper">Loading...</div>;
+  if (error || !data) return <div className="wrapper">ERROR</div>;
 
   return (
-    <>
+    <div className="grid-container">
       <div className="grid">
         {data.launches &&
           data.launches.launches &&
@@ -58,35 +58,33 @@ const Launches: React.FC<LaunchesProps> = () => {
       {data.launches && data.launches.hasMore && (
         <div
           className="button"
-          style={{ width: "100px" }}
           onClick={() => {
-              setLoadingMore(true);
-              fetchMore({
-                variables: {
-                  after: data.launches.cursor,
-                },
-                updateQuery: (prev, { fetchMoreResult, ...rest }) => {
-                  setLoadingMore(false);
-                  if (!fetchMoreResult) return prev;
-                  return {
-                    ...fetchMoreResult,
-                    launches: {
-                      ...fetchMoreResult.launches,
-                      launches: [
-                        ...prev.launches.launches,
-                        ...fetchMoreResult.launches.launches,
-                      ],
-                    },
-                  };
-                },
-              })
-            }
-          }
+            setLoadingMore(true);
+            fetchMore({
+              variables: {
+                after: data.launches.cursor,
+              },
+              updateQuery: (prev, { fetchMoreResult, ...rest }) => {
+                setLoadingMore(false);
+                if (!fetchMoreResult) return prev;
+                return {
+                  ...fetchMoreResult,
+                  launches: {
+                    ...fetchMoreResult.launches,
+                    launches: [
+                      ...prev.launches.launches,
+                      ...fetchMoreResult.launches.launches,
+                    ],
+                  },
+                };
+              },
+            });
+          }}
         >
-          {loadingMore ? 'Loading...' : 'Load More'}
+          {loadingMore ? "Loading..." : "Load More"}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
