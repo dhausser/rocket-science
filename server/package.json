@@ -24,6 +24,7 @@
     "build:watch": "tsc --watch",
     "clean": "rm -rf dist/*",
     "dev": "nodemon",
-    "codegen": "graphql-codegen --watch --config codegen.yml"
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:watch": "graphql-codegen --watch --config codegen.yml"
   }
 }

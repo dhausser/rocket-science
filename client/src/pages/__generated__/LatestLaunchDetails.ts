@@ -9,23 +9,22 @@
 
 export interface LatestLaunchDetails_launch_rocket {
   __typename: "Rocket";
-  type: string | null;
-  id: string;
-  name: string | null;
+  rocket_name: string;
 }
 
-export interface LatestLaunchDetails_launch_mission {
-  __typename: "Mission";
-  name: string | null;
-  missionPatch: string | null;
+export interface LatestLaunchDetails_launch_launch_site {
+  __typename: "LaunchSite";
+  site_id: string;
+  site_name: string;
+  site_name_long: string;
 }
 
 export interface LatestLaunchDetails_launch {
   __typename: "Launch";
-  site: string | null;
-  rocket: LatestLaunchDetails_launch_rocket | null;
-  id: string;
-  mission: LatestLaunchDetails_launch_mission | null;
+  flight_number: string;
+  mission_name: string;
+  rocket: LatestLaunchDetails_launch_rocket;
+  launch_site: LatestLaunchDetails_launch_launch_site;
 }
 
 export interface LatestLaunchDetails {

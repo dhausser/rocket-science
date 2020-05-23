@@ -2,24 +2,8 @@ import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { RouteComponentProps } from "react-router-dom";
 
-import LaunchTile from "./launch-tile";
+import LaunchTile, { LAUNCH_TILE_DATA } from "../components/launch-tile";
 import * as GetLaunchListTypes from "./__generated__/GetLaunchList";
-
-export const LAUNCH_TILE_DATA = gql`
-  fragment LaunchTile on Launch {
-    __typename
-    id
-    site
-    rocket {
-      id
-      name
-    }
-    mission {
-      name
-      missionPatch
-    }
-  }
-`;
 
 export const GET_LAUNCHES = gql`
   query GetLaunchList($after: String) {
@@ -43,11 +27,12 @@ const Launches: React.FC<LaunchesProps> = () => {
     GetLaunchListTypes.GetLaunchListVariables
   >(GET_LAUNCHES);
 
-  if (loading) return <div className="wrapper">Loading...</div>;
-  if (error || !data) return <div className="wrapper">ERROR</div>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!data) return <p>Not Found</p>;
 
   return (
-    <div className="grid-container">
+    <>
       <div className="grid">
         {data.launches &&
           data.launches.launches &&
@@ -84,7 +69,7 @@ const Launches: React.FC<LaunchesProps> = () => {
           {loadingMore ? "Loading..." : "Load More"}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

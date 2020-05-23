@@ -20,10 +20,12 @@ export const resolvers = {
 
       return {
         launches,
-        cursor: launches.length ? launches[launches.length - 1].cursor : null,
+        cursor: launches.length
+          ? launches[launches.length - 1].launch_date_unix
+          : null,
         hasMore: launches.length
-          ? launches[launches.length - 1].cursor !==
-            allLaunches[allLaunches.length - 1].cursor
+          ? launches[launches.length - 1].launch_date_unix !==
+            allLaunches[allLaunches.length - 1].launch_date_unix
           : false,
       };
     },
