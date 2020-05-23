@@ -23,6 +23,14 @@ interface LaunchProps extends RouteComponentProps {
   launchId?: string;
 }
 
+function replacer(key: string, value: string) {
+  // Filtering out properties
+  if (key === "__typename") {
+    return undefined;
+  }
+  return value;
+}
+
 const Launch: React.FC<LaunchProps> = () => {
   const { launchId } = useParams();
   const { data, loading, error } = useQuery<
@@ -41,7 +49,10 @@ const Launch: React.FC<LaunchProps> = () => {
     return (
       <div className="wrapper">
         <LaunchTile key={launch.id} launch={launch} />
-        <div className="button" onClick={() => window.history.back() }>
+        <code>
+          <pre>{JSON.stringify(launch, replacer, 2)}</pre>
+        </code>
+        <div className="button" onClick={() => window.history.back()}>
           Back
         </div>
       </div>

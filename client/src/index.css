@@ -27,6 +27,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+  text-align: left;
+  background-color: var(--ifm-background-color-dark);
+  width: 250px;
+  padding: 1rem 2rem;
+  border-radius: 5px;
 }
 
 input {
