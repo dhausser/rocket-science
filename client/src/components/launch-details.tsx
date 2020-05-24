@@ -1,10 +1,14 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
-import * as LaunchDetailsTypes from '../pages/__generated__/LaunchDetails';
+import * as LaunchDetailsTypes from './__generated__/LaunchDetails';
 
 interface LaunchDetailsProps {
   id: string;
+}
+
+interface LaunchDetails {
+  launch: LaunchDetailsTypes.LaunchDetails;
 }
 
 export const LAUNCH_DATA = gql`
@@ -73,10 +77,7 @@ export const GET_LAUNCH_DETAILS = gql`
 `;
 
 const LaunchDetails: React.FC<LaunchDetailsProps> = ({ id }) => {
-  const { data, loading, error } = useQuery<
-    LaunchDetailsTypes.LaunchDetails,
-    LaunchDetailsTypes.LaunchDetailsVariables
-  >(GET_LAUNCH_DETAILS, {
+  const { data, loading, error } = useQuery<LaunchDetails>(GET_LAUNCH_DETAILS, {
     variables: { id },
   });
 

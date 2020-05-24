@@ -2,7 +2,7 @@ import React from 'react';
 import { gql } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
-import * as LaunchTileTypes from '../pages/__generated__/LaunchTile';
+import * as LaunchTileTypes from './__generated__/LaunchTile';
 
 interface LaunchTileProps {
   launch: LaunchTileTypes.LaunchTile;
