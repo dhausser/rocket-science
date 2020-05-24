@@ -9,7 +9,7 @@ import {
 import { prodEndpoint, devEndpoint } from './config';
 
 import './index.css';
-import Pages from './pages';
+import { Pages } from './pages';
 
 const uri = process.env.NODE_ENV === 'production' ? prodEndpoint : devEndpoint;
 

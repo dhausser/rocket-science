@@ -82,7 +82,7 @@ const LaunchDetails: React.FC<LaunchDetailsProps> = ({ id }) => {
   });
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>ERROR: {error.message}</p>;
+  if (error) return <p>ERROR:{error.message}</p>;
   if (!data) return <p>Not found</p>;
 
   if (data.launch?.rocket && data.launch?.launch_site.site_name_long) {
@@ -101,4 +101,4 @@ const LaunchDetails: React.FC<LaunchDetailsProps> = ({ id }) => {
   return null;
 };
 
-export default LaunchDetails;
+export { LaunchDetails };

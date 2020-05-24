@@ -25,7 +25,7 @@ const LaunchList: React.FC = () => {
   >(GET_LAUNCHES);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>Error:{error.message}</p>;
   if (!data) return <p>Not Found</p>;
 
   return (
@@ -46,7 +46,7 @@ const LaunchList: React.FC = () => {
               variables: {
                 after: data.launches.cursor,
               },
-              updateQuery: (prev, { fetchMoreResult, ...rest }) => {
+              updateQuery: (prev, { fetchMoreResult }) => {
                 setLoadingMore(false);
                 if (!fetchMoreResult) return prev;
                 return {
@@ -70,4 +70,4 @@ const LaunchList: React.FC = () => {
   );
 };
 
-export default LaunchList;
+export { LaunchList };

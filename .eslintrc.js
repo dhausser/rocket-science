@@ -32,6 +32,11 @@ module.exports = {
     "react/destructuring-assignment": "off",
     // No jsx extension: https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
     "react/jsx-filename-extension": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "@typescript-eslint/camelcase": "off",
     // Use function hoisting to improve code readability
     "no-use-before-define": [
       "error",
@@ -46,8 +51,6 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
-    // Common abbreviations are known and readable
-    "unicorn/prevent-abbreviations": "off",
   },
   parserOptions: {
     project: ['./client/tsconfig.json', './server/tsconfig.json']

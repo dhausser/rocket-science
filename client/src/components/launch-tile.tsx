@@ -43,4 +43,4 @@ const LaunchTile: React.FC<LaunchTileProps> = ({ launch }) => {
   );
 };
 
-export default LaunchTile;
+export { LaunchTile };

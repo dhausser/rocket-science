@@ -2,13 +2,13 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { MockedProvider } from '@apollo/client/testing';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Pages from '../pages';
+import { Pages } from '../pages';
 
 test('full app rendering/navigating', () => {
   const history = createMemoryHistory();
-  const { container, getByText } = render(
+  render(
     <MockedProvider>
       <Router history={history}>
         <Pages />
