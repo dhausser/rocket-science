@@ -1,7 +1,11 @@
 import React from "react";
-import { gql } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 
 import * as LaunchDetailsTypes from "../pages/__generated__/LaunchDetails";
+
+interface LaunchDetailsProps {
+  id: string;
+}
 
 export const LAUNCH_DATA = gql`
   fragment LaunchDetails on Launch {
@@ -59,10 +63,41 @@ export const LAUNCH_DATA = gql`
   }
 `;
 
-const LaunchDetails: React.FC<LaunchDetailsTypes.LaunchDetails> = ({
-  launch,
-}) => {
-  return <pre>{JSON.stringify(launch, null, 2)}</pre>;
+export const GET_LAUNCH_DETAILS = gql`
+  query LaunchDetails($id: ID!) {
+    launch(id: $id) {
+      ...LaunchDetails
+    }
+  }
+  ${LAUNCH_DATA}
+`;
+
+const LaunchDetails: React.FC<LaunchDetailsProps> = ({ id }) => {
+  const { data, loading, error } = useQuery<
+    LaunchDetailsTypes.LaunchDetails,
+    LaunchDetailsTypes.LaunchDetailsVariables
+  >(GET_LAUNCH_DETAILS, {
+    variables: { id },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>ERROR: {error.message}</p>;
+  if (!data) return <p>Not found</p>;
+
+  if (data.launch?.rocket && data.launch?.launch_site.site_name_long) {
+    return (
+      <>
+        <header>{data.launch.mission_name}</header>
+        <p>{data.launch.launch_site.site_name_long}</p>
+        <p>{data.launch.details}</p>
+        <pre>{JSON.stringify(data.launch, null, 2)}</pre>
+        <div className="button" onClick={() => window.history.back()}>
+          Back
+        </div>
+      </>
+    );
+  }
+  return null;
 };
 
 export default LaunchDetails;

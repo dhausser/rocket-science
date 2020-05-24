@@ -9,7 +9,7 @@ import {
 import { prodEndpoint, devEndpoint } from "./config";
 
 import "./index.css";
-import App from "./App";
+import Pages from "./pages";
 import * as serviceWorker from "./serviceWorker";
 
 const uri = process.env.NODE_ENV === "production" ? prodEndpoint : devEndpoint;
@@ -22,7 +22,7 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Pages />
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

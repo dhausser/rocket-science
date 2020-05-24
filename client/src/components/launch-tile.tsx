@@ -37,7 +37,7 @@ const LaunchTile: React.FC<LaunchTileProps> = ({ launch }) => {
           </Link>
         </div>
         <div className="box-card-text">{rocket?.rocket_name}</div>
-        <div className="box-card-tag">{launch_site.site_name_long}</div>
+        <div className="box-card-tag">{launch_site?.site_name_long}</div>
       </div>
     </div>
   );

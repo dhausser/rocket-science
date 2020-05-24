@@ -6,9 +6,11 @@ import Launches from "./launches";
 
 export default function Pages() {
   return (
-    <Router>
-      <Route exact path="/" component={Launches} />
-      <Route path="/launch/:id" component={Launch} />
-    </Router>
+    <div className="App">
+      <Router>
+        <Route exact path="/" component={Launches} />
+        <Route path="/launch/:id" component={Launch} />
+      </Router>
+    </div>
   );
 }
