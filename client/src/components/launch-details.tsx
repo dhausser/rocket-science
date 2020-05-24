@@ -1,7 +1,7 @@
-import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
 
-import * as LaunchDetailsTypes from "../pages/__generated__/LaunchDetails";
+import * as LaunchDetailsTypes from '../pages/__generated__/LaunchDetails';
 
 interface LaunchDetailsProps {
   id: string;

@@ -1,24 +1,34 @@
-import { ApolloServer } from "apollo-server";
-import { typeDefs } from "./schema";
-import { resolvers } from "./resolvers";
-import { LaunchAPI, LaunchAPITypes } from "./datasources/launch";
+import { ApolloServer } from 'apollo-server';
+import { DataSources } from 'apollo-server-core/dist/graphqlOptions';
+import { typeDefs } from './schema';
+import { resolvers } from './resolvers';
+import { LaunchAPI } from './datasources/launch';
 
-export type Context = {
+interface Context {
   auth: string;
   env: string;
-  dataSources: {
-    launchAPI: LaunchAPITypes;
-  };
-};
+}
 
-const dataSources = () => ({
+interface RestDataSources {
+  launchAPI: LaunchAPI;
+}
+
+interface Request {
+  req: {
+    headers: {
+      authorization: string;
+    };
+  };
+}
+
+const dataSources = (): DataSources<RestDataSources> => ({
   launchAPI: new LaunchAPI(),
 });
 
 // the function that sets up the global context for each resolver, using the req
-const context = async ({ req }: { req: any }) => {
+const context = async ({ req }: Request): Promise<Context> => {
   // simple auth check on every request
-  const auth = (req.headers && req.headers.authorization) || "";
+  const auth = (req.headers && req.headers.authorization) || '';
   const env = process.env.NODE_ENV;
 
   return { auth, env };
@@ -26,7 +36,7 @@ const context = async ({ req }: { req: any }) => {
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-export function createLocalServer() {
+export function createLocalServer(): ApolloServer {
   return new ApolloServer({
     typeDefs,
     resolvers,

@@ -1,8 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Launch from "./launch";
-import Launches from "./launches";
+import Launch from './launch';
+import Launches from './launches';
 
 export default function Pages() {
   return (

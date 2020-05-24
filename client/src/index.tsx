@@ -1,18 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
   ApolloProvider,
-} from "@apollo/client";
-import { prodEndpoint, devEndpoint } from "./config";
+} from '@apollo/client';
+import { prodEndpoint, devEndpoint } from './config';
 
-import "./index.css";
-import Pages from "./pages";
-import * as serviceWorker from "./serviceWorker";
+import './index.css';
+import Pages from './pages';
+import * as serviceWorker from './serviceWorker';
 
-const uri = process.env.NODE_ENV === "production" ? prodEndpoint : devEndpoint;
+const uri = process.env.NODE_ENV === 'production' ? prodEndpoint : devEndpoint;
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -25,7 +25,7 @@ ReactDOM.render(
       <Pages />
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

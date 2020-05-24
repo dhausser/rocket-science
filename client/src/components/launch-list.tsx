@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import React, { useState } from 'react';
+import { useQuery, gql } from '@apollo/client';
 
-import LaunchTile, { LAUNCH_TILE_DATA } from "./launch-tile";
-import * as GetLaunchListTypes from "../pages/__generated__/GetLaunchList";
+import LaunchTile, { LAUNCH_TILE_DATA } from './launch-tile';
+import * as GetLaunchListTypes from '../pages/__generated__/GetLaunchList';
 
 export const GET_LAUNCHES = gql`
   query GetLaunchList($after: String) {
@@ -63,7 +63,7 @@ const LaunchList: React.FC = () => {
             });
           }}
         >
-          {loadingMore ? "Loading..." : "Load More"}
+          {loadingMore ? 'Loading...' : 'Load More'}
         </div>
       )}
     </>

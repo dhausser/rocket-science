@@ -1,7 +1,7 @@
-import React from "react";
-import { useParams, RouteComponentProps } from "react-router-dom";
+import React from 'react';
+import { useParams, RouteComponentProps } from 'react-router-dom';
 
-import LaunchDetails from "../components/launch-details";
+import LaunchDetails from '../components/launch-details';
 
 interface LaunchProps extends RouteComponentProps {
   id: string;

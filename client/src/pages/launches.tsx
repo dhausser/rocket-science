@@ -1,8 +1,8 @@
-import React from "react";
-import { RouteComponentProps } from "react-router-dom";
-import LaunchList from "../components/launch-list";
+import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import LaunchList from '../components/launch-list';
 
-interface LaunchesProps extends RouteComponentProps {}
+type LaunchesProps = RouteComponentProps;
 
 const Launches: React.FC<LaunchesProps> = () => {
   return <LaunchList />;

@@ -1,25 +1,25 @@
-import React from "react";
-import { render, act } from "@testing-library/react";
-import { MockedProvider } from "@apollo/client/testing";
-import Launch from "../components/launch-details";
-import { mocks } from "./mocks";
+import React from 'react';
+import { render, act } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
+import Launch from '../components/launch-details';
+import { mocks } from './mocks';
 
-it("renders single launch without error", () => {
+it('renders single launch without error', () => {
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
       <Launch id="109" />
-    </MockedProvider>
+    </MockedProvider>,
   );
 });
 
-it("should render loading state initially", () => {
+it('should render loading state initially', () => {
   const { getByText } = render(
     <MockedProvider mocks={[]}>
       <Launch id="109" />
-    </MockedProvider>
+    </MockedProvider>,
   );
 
-  expect(getByText("Loading...")).toBeInTheDocument();
+  expect(getByText('Loading...')).toBeInTheDocument();
 });
 
 // it("should render single launch", async () => {

@@ -1,8 +1,8 @@
-import React from "react";
-import { gql } from "@apollo/client";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
-import * as LaunchTileTypes from "../pages/__generated__/LaunchTile";
+import * as LaunchTileTypes from '../pages/__generated__/LaunchTile';
 
 interface LaunchTileProps {
   launch: LaunchTileTypes.LaunchTile;
@@ -31,7 +31,7 @@ const LaunchTile: React.FC<LaunchTileProps> = ({ launch }) => {
         <div className="box-card-link">
           <Link
             to={`/launch/${flight_number}`}
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: 'none' }}
           >
             {mission_name}
           </Link>

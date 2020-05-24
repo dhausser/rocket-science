@@ -1,13 +1,21 @@
-import { Context } from "./server";
-import { LaunchConnection, Launch } from "./__generated__/graphql";
-import { paginateResults } from "./utils";
+import { LaunchConnection, Launch } from './__generated__/graphql';
+import { LaunchAPITypes } from './datasources/launch';
+import { paginateResults } from './utils';
 
-export const resolvers = {
+export type Context = {
+  auth: string;
+  env: string;
+  dataSources: {
+    launchAPI: LaunchAPITypes;
+  };
+};
+
+const resolvers = {
   Query: {
     launches: async (
       _,
       { pageSize = 20, after },
-      { dataSources }: Context
+      { dataSources }: Context,
     ): Promise<LaunchConnection> => {
       const allLaunches = await dataSources.launchAPI.getAllLaunches();
       allLaunches.reverse();
@@ -37,10 +45,12 @@ export const resolvers = {
   },
   Mission: {
     // make sure the default size is 'large' in case user doesn't specify
-    missionPatch: (mission, { size } = { size: "LARGE" }) => {
-      return size === "SMALL"
+    missionPatch: (mission, { size } = { size: 'LARGE' }) => {
+      return size === 'SMALL'
         ? mission.missionPatchSmall
         : mission.missionPatchLarge;
     },
   },
 };
+
+export { resolvers };
