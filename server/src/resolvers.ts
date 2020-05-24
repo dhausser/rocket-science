@@ -37,19 +37,15 @@ const resolvers = {
           : false,
       };
     },
-    launch: (_, { id }, { dataSources }: Context): Promise<Launch> => {
-      return id
+    launch: (_, { id }, { dataSources }: Context): Promise<Launch> =>
+      id
         ? dataSources.launchAPI.getLaunchById(id)
-        : dataSources.launchAPI.getLatestLaunch();
-    },
+        : dataSources.launchAPI.getLatestLaunch(),
   },
   Mission: {
     // make sure the default size is 'large' in case user doesn't specify
-    missionPatch: (mission, { size } = { size: 'LARGE' }) => {
-      return size === 'SMALL'
-        ? mission.missionPatchSmall
-        : mission.missionPatchLarge;
-    },
+    missionPatch: (mission, { size } = { size: 'LARGE' }) =>
+      size === 'SMALL' ? mission.missionPatchSmall : mission.missionPatchLarge,
   },
 };
 

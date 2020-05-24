@@ -1,6 +1,14 @@
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import {
+  GraphQLResolveInfo,
+  GraphQLScalarType,
+  GraphQLScalarTypeConfig,
+} from 'graphql';
+
 export type Maybe<T> = T | null;
-export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
+export type RequireFields<T, K extends keyof T> = {
+  [X in Exclude<keyof T, K>]?: T[X];
+} &
+  { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -14,7 +22,7 @@ export type Scalars = {
 
 export enum CacheControlScope {
   Public = 'PUBLIC',
-  Private = 'PRIVATE'
+  Private = 'PRIVATE',
 }
 
 export type Core = {
@@ -111,7 +119,6 @@ export type Mission = {
   missionPatch?: Maybe<Scalars['String']>;
 };
 
-
 export type MissionMissionPatchArgs = {
   size?: Maybe<PatchSize>;
 };
@@ -137,7 +144,7 @@ export type OrbitParams = {
 
 export enum PatchSize {
   Small = 'SMALL',
-  Large = 'LARGE'
+  Large = 'LARGE',
 }
 
 export type Payload = {
@@ -166,12 +173,10 @@ export type Query = {
   launch?: Maybe<Launch>;
 };
 
-
 export type QueryLaunchesArgs = {
   pageSize?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
 };
-
 
 export type QueryLaunchArgs = {
   id?: Maybe<Scalars['ID']>;
@@ -224,7 +229,6 @@ export type Timeline = {
   dragon_bay_door_deploy: Scalars['Int'];
 };
 
-
 export type User = {
   __typename?: 'User';
   id: Scalars['ID'];
@@ -233,10 +237,7 @@ export type User = {
   trips: Array<Maybe<Launch>>;
 };
 
-
-
 export type ResolverTypeWrapper<T> = Promise<T> | T;
-
 
 export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
   fragment: string;
@@ -251,26 +252,42 @@ export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => Promise<TResult> | TResult;
 
 export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => AsyncIterator<TResult> | Promise<AsyncIterator<TResult>>;
 
 export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
 
-export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
-  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
+export interface SubscriptionSubscriberObject<
+  TResult,
+  TKey extends string,
+  TParent,
+  TContext,
+  TArgs
+> {
+  subscribe: SubscriptionSubscribeFn<
+    { [key in TKey]: TResult },
+    TParent,
+    TContext,
+    TArgs
+  >;
+  resolve?: SubscriptionResolveFn<
+    TResult,
+    { [key in TKey]: TResult },
+    TContext,
+    TArgs
+  >;
 }
 
 export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
@@ -278,30 +295,52 @@ export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
   resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
 }
 
-export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
+export type SubscriptionObject<
+  TResult,
+  TKey extends string,
+  TParent,
+  TContext,
+  TArgs
+> =
   | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
   | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
 
-export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
-  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
+export type SubscriptionResolver<
+  TResult,
+  TKey extends string,
+  TParent = {},
+  TContext = {},
+  TArgs = {}
+> =
+  | ((
+      ...args: any[]
+    ) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
   | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
 
 export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   parent: TParent,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type isTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
+export type isTypeOfResolverFn<T = {}> = (
+  obj: T,
+  info: GraphQLResolveInfo,
+) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
-export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
+export type DirectiveResolverFn<
+  TResult = {},
+  TParent = {},
+  TContext = {},
+  TArgs = {}
+> = (
   next: NextResolverFn<TResult>,
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
 
 /** Mapping between all available schema types and the resolvers types */
@@ -360,8 +399,15 @@ export type ResolversParentTypes = {
   Upload: Scalars['Upload'];
 };
 
-export type CoreResolvers<ContextType = any, ParentType extends ResolversParentTypes['Core'] = ResolversParentTypes['Core']> = {
-  core_serial?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+export type CoreResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Core'] = ResolversParentTypes['Core']
+> = {
+  core_serial?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   flight?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   block?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   gridfins?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -374,97 +420,237 @@ export type CoreResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type CrewResolvers<ContextType = any, ParentType extends ResolversParentTypes['Crew'] = ResolversParentTypes['Crew']> = {
-  members?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
+export type CrewResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Crew'] = ResolversParentTypes['Crew']
+> = {
+  members?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['String']>>>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type FairingsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Fairings'] = ResolversParentTypes['Fairings']> = {
+export type FairingsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Fairings'] = ResolversParentTypes['Fairings']
+> = {
   id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type FirstStageResolvers<ContextType = any, ParentType extends ResolversParentTypes['FirstStage'] = ResolversParentTypes['FirstStage']> = {
+export type FirstStageResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['FirstStage'] = ResolversParentTypes['FirstStage']
+> = {
   cores?: Resolver<Array<ResolversTypes['Core']>, ParentType, ContextType>;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type LaunchResolvers<ContextType = any, ParentType extends ResolversParentTypes['Launch'] = ResolversParentTypes['Launch']> = {
+export type LaunchResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Launch'] = ResolversParentTypes['Launch']
+> = {
   flight_number?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   mission_name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  mission_id?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  mission_id?: Resolver<
+    Array<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   launch_year?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  launch_date_unix?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  launch_date_unix?: Resolver<
+    ResolversTypes['String'],
+    ParentType,
+    ContextType
+  >;
   launch_date_utc?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  launch_date_local?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  launch_date_local?: Resolver<
+    ResolversTypes['String'],
+    ParentType,
+    ContextType
+  >;
   is_tentative?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  tentative_max_precision?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  tentative_max_precision?: Resolver<
+    ResolversTypes['String'],
+    ParentType,
+    ContextType
+  >;
   tbd?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  launch_window?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  launch_window?: Resolver<
+    Maybe<ResolversTypes['Int']>,
+    ParentType,
+    ContextType
+  >;
   rocket?: Resolver<ResolversTypes['Rocket'], ParentType, ContextType>;
   ships?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   telemetry?: Resolver<ResolversTypes['Telemetry'], ParentType, ContextType>;
   launch_site?: Resolver<ResolversTypes['LaunchSite'], ParentType, ContextType>;
-  launch_success?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  launch_success?: Resolver<
+    Maybe<ResolversTypes['Boolean']>,
+    ParentType,
+    ContextType
+  >;
   links?: Resolver<ResolversTypes['Links'], ParentType, ContextType>;
   details?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   upcoming?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  static_fire_date_utc?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  static_fire_date_unix?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  timeline?: Resolver<Maybe<ResolversTypes['Timeline']>, ParentType, ContextType>;
+  static_fire_date_utc?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  static_fire_date_unix?: Resolver<
+    Maybe<ResolversTypes['Int']>,
+    ParentType,
+    ContextType
+  >;
+  timeline?: Resolver<
+    Maybe<ResolversTypes['Timeline']>,
+    ParentType,
+    ContextType
+  >;
   crew?: Resolver<Maybe<ResolversTypes['Crew']>, ParentType, ContextType>;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type LaunchConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['LaunchConnection'] = ResolversParentTypes['LaunchConnection']> = {
+export type LaunchConnectionResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['LaunchConnection'] = ResolversParentTypes['LaunchConnection']
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   hasMore?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  launches?: Resolver<Array<Maybe<ResolversTypes['Launch']>>, ParentType, ContextType>;
+  launches?: Resolver<
+    Array<Maybe<ResolversTypes['Launch']>>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type LaunchSiteResolvers<ContextType = any, ParentType extends ResolversParentTypes['LaunchSite'] = ResolversParentTypes['LaunchSite']> = {
+export type LaunchSiteResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['LaunchSite'] = ResolversParentTypes['LaunchSite']
+> = {
   site_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   site_name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   site_name_long?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type LinksResolvers<ContextType = any, ParentType extends ResolversParentTypes['Links'] = ResolversParentTypes['Links']> = {
-  mission_patch?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  mission_patch_small?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  reddit_campaign?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  reddit_launch?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  reddit_recovery?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  reddit_media?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+export type LinksResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Links'] = ResolversParentTypes['Links']
+> = {
+  mission_patch?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  mission_patch_small?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  reddit_campaign?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  reddit_launch?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  reddit_recovery?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  reddit_media?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   presskit?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  article_link?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  wikipedia?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  video_link?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  youtube_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  flickr_images?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>;
+  article_link?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  wikipedia?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  video_link?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  youtube_id?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  flickr_images?: Resolver<
+    Maybe<Array<ResolversTypes['String']>>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type MissionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mission'] = ResolversParentTypes['Mission']> = {
+export type MissionResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Mission'] = ResolversParentTypes['Mission']
+> = {
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  missionPatchSmall?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  missionPatchLarge?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  missionPatch?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MissionMissionPatchArgs, never>>;
+  missionPatchSmall?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  missionPatchLarge?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  missionPatch?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType,
+    RequireFields<MissionMissionPatchArgs, never>
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type OrbitParamsResolvers<ContextType = any, ParentType extends ResolversParentTypes['OrbitParams'] = ResolversParentTypes['OrbitParams']> = {
-  reference_system?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+export type OrbitParamsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['OrbitParams'] = ResolversParentTypes['OrbitParams']
+> = {
+  reference_system?: Resolver<
+    ResolversTypes['String'],
+    ParentType,
+    ContextType
+  >;
   regime?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  longitude?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  longitude?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   semi_major_axis_km?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   eccentricity?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   periapsis_km?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   apoapsis_km?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   inclination_deg?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   period_min?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  lifespan_years?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  lifespan_years?: Resolver<
+    Maybe<ResolversTypes['Int']>,
+    ParentType,
+    ContextType
+  >;
   epoch?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   mean_motion?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   raan?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -473,19 +659,30 @@ export type OrbitParamsResolvers<ContextType = any, ParentType extends Resolvers
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type PayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['Payload'] = ResolversParentTypes['Payload']> = {
+export type PayloadResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Payload'] = ResolversParentTypes['Payload']
+> = {
   payload_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   norad_id?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   cap_serial?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   reused?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  customers?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  customers?: Resolver<
+    Array<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   nationality?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   manufacturer?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   payload_type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   payload_mass_kg?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   payload_mass_lbs?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   orbit?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  orbit_params?: Resolver<ResolversTypes['OrbitParams'], ParentType, ContextType>;
+  orbit_params?: Resolver<
+    ResolversTypes['OrbitParams'],
+    ParentType,
+    ContextType
+  >;
   mass_returned_kg?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   mass_returned_lbs?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   flight_time_sec?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -493,67 +690,152 @@ export type PayloadResolvers<ContextType = any, ParentType extends ResolversPare
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  launches?: Resolver<ResolversTypes['LaunchConnection'], ParentType, ContextType, RequireFields<QueryLaunchesArgs, never>>;
-  launch?: Resolver<Maybe<ResolversTypes['Launch']>, ParentType, ContextType, RequireFields<QueryLaunchArgs, never>>;
+export type QueryResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
+> = {
+  launches?: Resolver<
+    ResolversTypes['LaunchConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<QueryLaunchesArgs, never>
+  >;
+  launch?: Resolver<
+    Maybe<ResolversTypes['Launch']>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryLaunchArgs, never>
+  >;
 };
 
-export type RocketResolvers<ContextType = any, ParentType extends ResolversParentTypes['Rocket'] = ResolversParentTypes['Rocket']> = {
+export type RocketResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Rocket'] = ResolversParentTypes['Rocket']
+> = {
   rocket_id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   rocket_name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   rocket_type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   first_stage?: Resolver<ResolversTypes['FirstStage'], ParentType, ContextType>;
-  second_stage?: Resolver<ResolversTypes['SecondStage'], ParentType, ContextType>;
+  second_stage?: Resolver<
+    ResolversTypes['SecondStage'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type SecondStageResolvers<ContextType = any, ParentType extends ResolversParentTypes['SecondStage'] = ResolversParentTypes['SecondStage']> = {
+export type SecondStageResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['SecondStage'] = ResolversParentTypes['SecondStage']
+> = {
   block?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  payloads?: Resolver<Array<ResolversTypes['Payload']>, ParentType, ContextType>;
-  fairings?: Resolver<Maybe<ResolversTypes['Fairings']>, ParentType, ContextType>;
+  payloads?: Resolver<
+    Array<ResolversTypes['Payload']>,
+    ParentType,
+    ContextType
+  >;
+  fairings?: Resolver<
+    Maybe<ResolversTypes['Fairings']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type TelemetryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Telemetry'] = ResolversParentTypes['Telemetry']> = {
-  flight_club?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+export type TelemetryResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Telemetry'] = ResolversParentTypes['Telemetry']
+> = {
+  flight_club?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export type TimelineResolvers<ContextType = any, ParentType extends ResolversParentTypes['Timeline'] = ResolversParentTypes['Timeline']> = {
+export type TimelineResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Timeline'] = ResolversParentTypes['Timeline']
+> = {
   webcast_liftoff?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  go_for_prop_loading?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  go_for_prop_loading?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
   rp1_loading?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   stage1_lox_loading?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   stage2_lox_loading?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   engine_chill?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   prelaunch_checks?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  propellant_pressurization?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  propellant_pressurization?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
   go_for_launch?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   ignition?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   liftoff?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   maxq?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   meco?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   stage_sep?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  second_stage_ignition?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  first_stage_boostback_burn?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  first_stage_entry_burn?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  first_stage_landing?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  second_stage_ignition?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
+  first_stage_boostback_burn?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
+  first_stage_entry_burn?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
+  first_stage_landing?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
   seco?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   dragon_separation?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  dragon_solar_deploy?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  dragon_bay_door_deploy?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  dragon_solar_deploy?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
+  dragon_bay_door_deploy?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
-export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
+export interface UploadScalarConfig
+  extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
   name: 'Upload';
 }
 
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+export type UserResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
+> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  profileImage?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  trips?: Resolver<Array<Maybe<ResolversTypes['Launch']>>, ParentType, ContextType>;
+  profileImage?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
+  trips?: Resolver<
+    Array<Maybe<ResolversTypes['Launch']>>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
@@ -577,7 +859,6 @@ export type Resolvers<ContextType = any> = {
   Upload?: GraphQLScalarType;
   User?: UserResolvers<ContextType>;
 };
-
 
 /**
  * @deprecated
