@@ -17,7 +17,6 @@ class LaunchAPI extends RESTDataSource {
 
   public async getAllLaunches(): Promise<LaunchConnection | void[]> {
     const response = await this.get('launches');
-    console.log('hello!');
     return Array.isArray(response) ? response : [];
   }
 
