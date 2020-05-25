@@ -9,7 +9,6 @@ interface LaunchProps extends RouteComponentProps {
 
 const Launch: React.FC<LaunchProps> = () => {
   const { id } = useParams();
-  console.log('test');
   return <LaunchDetails id={id} />;
 };
 
