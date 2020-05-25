@@ -18,6 +18,8 @@ const client = new ApolloClient({
   link: new HttpLink({ uri }),
 });
 
+console.log('test');
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
