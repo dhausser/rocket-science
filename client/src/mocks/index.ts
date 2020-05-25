@@ -1,5 +1,5 @@
-import { GET_LAUNCH_DETAILS } from '../../components/launch-details';
-import { GET_LAUNCHES } from '../../components/launch-list';
+import { GET_LAUNCH_DETAILS } from '../components/launch-details';
+import { GET_LAUNCHES } from '../components/launch-list';
 
 const mocks = [
   {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 
-import LaunchTile, { LAUNCH_TILE_DATA } from './launch-tile';
+import { LaunchTile, LAUNCH_TILE_DATA } from './launch-tile';
 import * as GetLaunchListTypes from './__generated__/GetLaunchList';
 
 export const GET_LAUNCHES = gql`
