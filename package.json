@@ -37,7 +37,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "lerna run test"
+      "pre-push": "yarn lint && lerna run --parallel --stream test"
     }
   },
   "lint-staged": {

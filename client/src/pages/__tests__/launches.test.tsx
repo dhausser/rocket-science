@@ -71,11 +71,13 @@ describe('Launches Page', () => {
   });
 
   it('renders launches', async () => {
-    const { getByText } = await renderApollo(<LaunchList />, {
-      mocks,
-      cache,
-    });
+    await act(async () => {
+      const { getByText } = await renderApollo(<LaunchList />, {
+        mocks,
+        cache,
+      });
 
-    await waitFor(() => getByText(/test mission/i));
+      await waitFor(() => getByText(/test mission/i));
+    });
   });
 });

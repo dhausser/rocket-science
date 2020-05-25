@@ -12,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
+    "test": "CI=true react-scripts test --env=jest-environment-jsdom-sixteen a",
     "eject": "react-scripts eject",
     "codegen": "apollo client:codegen --target typescript --watch"
   },

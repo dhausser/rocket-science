@@ -35,9 +35,11 @@ describe('Launch Page', () => {
   afterEach(cleanup);
 
   it('renders single launch without error', async () => {
-    await renderApollo(<LaunchDetails id="109" />, {
-      mocks,
-      resolvers: {},
+    await act(async () => {
+      await renderApollo(<LaunchDetails id="109" />, {
+        mocks,
+        resolvers: {},
+      });
     });
   });
 
