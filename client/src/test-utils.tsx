@@ -3,7 +3,6 @@ import { render } from '@testing-library/react';
 // this adds custom jest matchers from jest-dom
 import '@testing-library/jest-dom/extend-expect';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 type RenderApolloOptions = {
   mocks?: MockedResponse[];
@@ -12,6 +11,23 @@ type RenderApolloOptions = {
   cache?: any;
   resolvers?: any;
   [st: string]: any;
+};
+
+const mockLaunch = {
+  __typename: 'Launch',
+  flight_number: '109',
+  mission_name: 'test mission',
+  rocket: {
+    __typename: 'Rocket',
+    rocket_name: 'Rocket name 1',
+  },
+  launch_site: {
+    __typename: 'LaunchSite',
+    site_id: 'Launch site id 1',
+    site_name: 'Launch site name 1',
+    site_name_long: 'Launch site name long 1',
+  },
+  details: 'test details',
 };
 
 const renderApollo = (
@@ -33,11 +49,11 @@ const renderApollo = (
       cache={cache}
       resolvers={resolvers}
     >
-      <Router>{node}</Router>
+      {node}
     </MockedProvider>,
     options,
   );
 };
 
 export * from '@testing-library/react';
-export { renderApollo };
+export { renderApollo, mockLaunch };

@@ -67,13 +67,24 @@ export const LAUNCH_DATA = gql`
   }
 `;
 
+// export const GET_LAUNCH_DETAILS = gql`
+//   query LaunchDetails($id: ID!) {
+//     launch(id: $id) {
+//       ...LaunchDetails
+//     }
+//   }
+//   ${LAUNCH_DATA}
+// `;
+
 export const GET_LAUNCH_DETAILS = gql`
   query LaunchDetails($id: ID!) {
     launch(id: $id) {
-      ...LaunchDetails
+      flight_number
+      mission_name
+      launch_site
+      details
     }
   }
-  ${LAUNCH_DATA}
 `;
 
 const LaunchDetails: React.FC<LaunchDetailsProps> = ({ id }) => {
@@ -85,20 +96,17 @@ const LaunchDetails: React.FC<LaunchDetailsProps> = ({ id }) => {
   if (error) return <p>ERROR:{error.message}</p>;
   if (!data) return <p>Not found</p>;
 
-  if (data.launch?.rocket && data.launch?.launch_site.site_name_long) {
-    return (
-      <>
-        <header>{data.launch.mission_name}</header>
-        <p>{data.launch.launch_site.site_name_long}</p>
-        <p>{data.launch.details}</p>
-        <pre>{JSON.stringify(data.launch, null, 2)}</pre>
-        <div className="button" onClick={() => window.history.back()}>
-          Back
-        </div>
-      </>
-    );
-  }
-  return null;
+  return (
+    <>
+      <header>{data.launch.mission_name}</header>
+      <p>{data.launch.launch_site.site_name_long}</p>
+      <p>{data.launch.details}</p>
+      <pre>{JSON.stringify(data.launch, null, 2)}</pre>
+      <div className="button" onClick={() => window.history.back()}>
+        Back
+      </div>
+    </>
+  );
 };
 
 export { LaunchDetails };

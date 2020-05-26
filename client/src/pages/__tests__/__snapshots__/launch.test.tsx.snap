@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render single launch 1`] = `
+<div>
+  <p>
+    Loading...
+  </p>
+</div>
+`;
+
+exports[`should render single launch 2`] = `
+<div>
+  <header>
+    test mission
+  </header>
+  <p>
+    Launch site name long 1
+  </p>
+  <p>
+    test details
+  </p>
+  <pre>
+    {
+  "__typename": "Launch",
+  "flight_number": "109",
+  "mission_name": "test mission",
+  "launch_site": {
+    "__typename": "LaunchSite",
+    "site_id": "Launch site id 1",
+    "site_name": "Launch site name 1",
+    "site_name_long": "Launch site name long 1"
+  },
+  "details": "test details"
+}
+  </pre>
+  <div
+    class="button"
+  >
+    Back
+  </div>
+</div>
+`;
