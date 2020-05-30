@@ -2,7 +2,7 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 interface Args {
-  after: number;
+  after?: number;
   pageSize: number;
   results: any;
   getCursor?: (item: any) => null;

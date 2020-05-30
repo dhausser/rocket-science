@@ -2,42 +2,37 @@
   "name": "rocket-science-server",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon",
+    "start:ci": "node dist/index.js",
+    "build": "tsc --watch",
+    "build:ci": "tsc",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:watch": "graphql-codegen --watch --config codegen.yml"
+  },
+  "license": "ISC",
   "dependencies": {
-    "apollo-datasource-rest": "^0.9.0",
-    "apollo-server": "^2.13.1",
-    "apollo-server-core": "^2.13.1",
-    "graphql": "^14.2.1"
+    "apollo-datasource-rest": "^0.9.2",
+    "apollo-link": "^1.2.14",
+    "apollo-link-http": "^1.5.17",
+    "apollo-server": "^2.14.1",
+    "apollo-server-core": "^2.14.1",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.2.1",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.14.0",
-    "@graphql-codegen/introspection": "^1.14.0",
-    "@graphql-codegen/typescript": "^1.14.0",
-    "@graphql-codegen/typescript-resolvers": "^1.14.0",
+    "@graphql-codegen/cli": "^1.15.0",
+    "@graphql-codegen/introspection": "^1.15.0",
+    "@graphql-codegen/typescript": "^1.15.0",
+    "@graphql-codegen/typescript-resolvers": "^1.15.0",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^25.2.3",
     "jest": "^26.0.1",
     "nodemon": "^2.0.4",
     "ts-jest": "^26.0.0",
-    "ts-node": "^8.10.1",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.3"
-  },
-  "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "clean": "rm -rf dist/*",
-    "test": "ts-jest",
-    "dev": "nodemon",
-    "codegen": "graphql-codegen --config codegen.yml",
-    "codegen:watch": "graphql-codegen --watch --config codegen.yml"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/__utils"
-    ]
   }
 }

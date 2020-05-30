@@ -1,6 +1,7 @@
 module.exports = {
   parser: "@typescript-eslint/parser", // Specifies the ESLint parser
   parserOptions: {
+    project: ['./client/tsconfig.json', './server/tsconfig.json'],
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
     sourceType: "module", // Allows for the use of imports
     ecmaFeatures: {
@@ -23,6 +24,7 @@ module.exports = {
     jest: true
   },
   rules: {
+    "no-console": "off",
     "import/no-extraneous-dependencies": "off",
     // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
     "no-prototype-builtins": "off",
@@ -52,8 +54,5 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
-  },
-  parserOptions: {
-    project: ['./client/tsconfig.json', './server/tsconfig.json']
   }
 }

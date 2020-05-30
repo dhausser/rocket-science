@@ -42,7 +42,9 @@ export function createLocalServer(): ApolloServer {
     resolvers,
     dataSources,
     context,
-    introspection: true,
-    playground: true,
+    engine: {
+      apiKey: process.env.ENGINE_API_KEY,
+      graphVariant: 'production',
+    },
   });
 }

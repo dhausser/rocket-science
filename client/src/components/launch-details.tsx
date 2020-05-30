@@ -67,22 +67,25 @@ export const LAUNCH_DATA = gql`
   }
 `;
 
-// export const GET_LAUNCH_DETAILS = gql`
-//   query LaunchDetails($id: ID!) {
-//     launch(id: $id) {
-//       ...LaunchDetails
-//     }
-//   }
-//   ${LAUNCH_DATA}
-// `;
-
 export const GET_LAUNCH_DETAILS = gql`
   query LaunchDetails($id: ID!) {
     launch(id: $id) {
       flight_number
       mission_name
-      launch_site
+      launch_site {
+        site_id
+        site_name
+        site_name_long
+      }
       details
+      launch_date_local
+      launch_date_unix
+      launch_date_utc
+      launch_site {
+        site_id
+        site_name
+        site_name_long
+      }
     }
   }
 `;

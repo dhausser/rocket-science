@@ -38,9 +38,7 @@ const resolvers = {
       };
     },
     launch: (_, { id }, { dataSources }: Context): Promise<Launch> =>
-      id
-        ? dataSources.launchAPI.getLaunchById(id)
-        : dataSources.launchAPI.getLatestLaunch(),
+      dataSources.launchAPI.getLaunchById({ launchId: id }),
   },
   Mission: {
     // make sure the default size is 'large' in case user doesn't specify

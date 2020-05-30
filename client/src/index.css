@@ -1,8 +1,8 @@
 :root {
   --ifm-background-color: #f5f8f9;
   --ifm-background-color-dark: #282c34;
-  /* --ifm-color-primary: #00ad9f; */
-  --ifm-color-primary: #09d3ac;
+  --ifm-color-primary: #00ad9f;
+  /* --ifm-color-primary: #09d3ac; */
   --ifm-color-primary-dark: rgb(8, 190, 155);
   --ifm-color-primary-darker: rgb(8, 179, 146);
   --ifm-color-primary-darkest: rgb(6, 148, 120);
@@ -89,7 +89,6 @@ a:hover {
   justify-content: center;
   width: 120px;
   background-color: var(--ifm-color-primary);
-  box-shadow: 0 2px 1px hsla(0, 0%, 66.7%, 0.25);
   border-radius: var(--ifm-border-radius);
   color: var(--ifm-background-color);
   font-size: 17px;
