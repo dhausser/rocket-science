@@ -1,6 +1,5 @@
 :root {
-  --ifm-background-color: #f5f8f9;
-  --ifm-background-color-dark: #282c34;
+  --ifm-background-color: #282c34;
   --ifm-color-primary: #00ad9f;
   /* --ifm-color-primary: #09d3ac; */
   --ifm-color-primary-dark: rgb(8, 190, 155);
@@ -14,7 +13,7 @@
 }
 
 body {
-  background-color: var(--ifm-background-color-dark);
+  background-color: var(--ifm-background-color);
   color: var(--ifm-color-primary);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -51,7 +50,7 @@ a:hover {
 
 .App {
   padding: 2rem;
-  background-color: #282c34;
+  background-color:var(--ifm-background-color);
 }
 
 .grid {
@@ -116,7 +115,7 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  border: 1px solid var(--ifm-color-primary);
+  border: 1px solid slategrey;
   border-radius: var(--ifm-border-radius);
   color: var(--ifm-color-primary);
   height: 300px;

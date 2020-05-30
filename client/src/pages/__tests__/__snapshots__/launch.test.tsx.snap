@@ -11,26 +11,27 @@ exports[`should render single launch 1`] = `
 exports[`should render single launch 2`] = `
 <div>
   <header>
-    test mission
+    FalconSat
   </header>
   <p>
-    Launch site name long 1
+    Kwajalein Atoll Omelek Island
   </p>
   <p>
-    test details
+    Engine failure at 33 seconds and loss of vehicle
   </p>
   <pre>
     {
-  "__typename": "Launch",
-  "flight_number": "109",
-  "mission_name": "test mission",
+  "flight_number": 1,
+  "mission_name": "FalconSat",
   "launch_site": {
-    "__typename": "LaunchSite",
-    "site_id": "Launch site id 1",
-    "site_name": "Launch site name 1",
-    "site_name_long": "Launch site name long 1"
+    "site_id": "kwajalein_atoll",
+    "site_name": "Kwajalein Atoll",
+    "site_name_long": "Kwajalein Atoll Omelek Island"
   },
-  "details": "test details"
+  "details": "Engine failure at 33 seconds and loss of vehicle",
+  "launch_date_local": "2006-03-25T10:30:00+12:00",
+  "launch_date_unix": 1143239400,
+  "launch_date_utc": "2006-03-24T22:30:00.000Z"
 }
   </pre>
   <div
