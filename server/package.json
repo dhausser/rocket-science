@@ -16,7 +16,7 @@
     "apollo-datasource-rest": "^0.9.2",
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
-    "apollo-server": "^2.14.1",
+    "apollo-server": "^2.14.2",
     "apollo-server-core": "^2.14.1",
     "dotenv": "^8.2.0",
     "graphql": "^14.2.1",
