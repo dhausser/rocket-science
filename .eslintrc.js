@@ -54,5 +54,6 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
+    "@typescript-eslint/naming-convention": "off"
   }
 }

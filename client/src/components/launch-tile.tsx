@@ -15,16 +15,11 @@ export const LAUNCH_TILE_DATA = gql`
     rocket {
       rocket_name
     }
-    launch_site {
-      site_id
-      site_name
-      site_name_long
-    }
   }
 `;
 
 const LaunchTile: React.FC<LaunchTileProps> = ({ launch }) => {
-  const { flight_number, mission_name, rocket, launch_site } = launch;
+  const { flight_number, mission_name, rocket } = launch;
   return (
     <div className="box-card-container">
       <div className="box-card">
@@ -37,7 +32,6 @@ const LaunchTile: React.FC<LaunchTileProps> = ({ launch }) => {
           </Link>
         </div>
         <div className="box-card-text">{rocket?.rocket_name}</div>
-        <div className="box-card-tag">{launch_site?.site_name_long}</div>
       </div>
     </div>
   );

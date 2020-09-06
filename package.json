@@ -20,7 +20,7 @@
   "homepage": "https://github.com/dhausser/rocket-science#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "eslint": "^7.8.1",
+    "eslint": "^6.6.0",
     "eslint-config-airbnb-typescript": "^10.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
